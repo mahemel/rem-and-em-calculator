@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>rem Calc</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap" rel="stylesheet">
+
+    
+    <style>
+        * {
+            -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+            padding: 0;
+            margin: 0;
+        }
+        body {
+            font-family: "Roboto Mono", monospace;
+            font-optical-sizing: auto;
+            font-weight: 400;
+            font-style: normal;
+        }
+        main {
+            max-width: 840px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 3rem;
+        }
+        h2 {
+            font-size: 1.25rem;
+        }
+        .flex {
+            display: flex;
+        }
+        .flex-wrap {
+            flex-wrap: wrap;
+        }
+        .grids {
+            display: grid;
+            grid-template-columns: 1fr;
+        }
+        .responsive-inputs {
+            padding: 2rem 0 0;
+        }
+        .responsive-inputs .form-control {
+            height: 3rem;
+            font-size: 1.25rem;
+            margin-bottom: 1rem;
+            padding: 0 .5em;
+            color: #000;
+            border: 1px solid;
+            font-family: inherit;
+        }
+        .copyme {
+            cursor: copy;
+        }
+        .form-control::-moz-placeholder {
+            color: #666;
+            opacity: 1;
+        }
+        .form-control::-ms-placeholder {
+            color: #666;
+            opacity: 1;
+        }
+        .form-control::-webkit-input-placeholder {
+            color: #666;
+            opacity: 1;
+        }
+        h2 {
+            margin-bottom: 1rem;
+        }
+        @media screen and (max-width: 767px) {
+
+            main {
+                grid-template-columns: 1fr;
+                gap: 0;
+                padding: 0 20px
+            }
+            .responsive-inputs .form-control {
+                font-size: 1rem;
+            }
+        }
+    </style>
+
+</head>
+<body>
+    
+    <main>
+
+        <div class="responsive-inputs">
+            <h2 class="text-center">REM Calculator</h2>
+            <div class="grids">
+                <input type="text" class="form-control col-100" id="base" value="16" placeholder="Base">
+
+                <input type="text" class="form-control col-100" id="for" placeholder="amount of px">
+
+                <input type="text" class="form-control col-100 copyme" id="result" placeholder="rem" readonly>
+                
+                <div id="msg"></div>
+            </div>
+        </div>
+
+        <div class="responsive-inputs">
+            <h2 class="text-center">EM Calculator for Line-height</h2>
+            <div class="grids">
+                <input type="text" class="form-control col-100" id="base2" value="" placeholder="Font Size in px">
+
+                <input type="text" class="form-control col-100" id="for2" placeholder="line-height in px">
+
+                <input type="text" class="form-control col-100 copyme" id="result2" placeholder="em" readonly>
+                
+                <div id="msg2"></div>
+            </div>
+        </div>
+    </main>
+    
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+
+        const forInput = document.getElementById('for');
+        const baseInput = document.getElementById('base');
+        const resultInput = document.getElementById('result');
+
+        const forInput2 = document.getElementById('for2');
+        const baseInput2 = document.getElementById('base2');
+        const resultInput2 = document.getElementById('result2');
+
+        forInput.addEventListener('keyup', function () {
+            const result = forInput.value / baseInput.value;
+            resultInput.value = result + 'rem';
+        });
+
+        resultInput.addEventListener('click', function () {
+            copyTexts();
+        });
+
+        forInput2.addEventListener('keyup', function () {
+            const result = forInput2.value / baseInput2.value;
+            resultInput2.value = result + 'em';
+        });
+
+        resultInput2.addEventListener('click', function () {
+            copyTexts2();
+        });
+    });
+
+    function copyTexts() {
+        const copyText = document.getElementById('result');
+        copyText.select();
+        copyText.setSelectionRange(0, 99999); // For mobile
+        document.execCommand('copy');
+        document.getElementById('msg').innerHTML = 'Copied!!';
+    }
+
+    function copyTexts2() {
+        const copyText = document.getElementById('result2');
+        copyText.select();
+        copyText.setSelectionRange(0, 99999); // For mobile
+        document.execCommand('copy');
+        document.getElementById('msg2').innerHTML = 'Copied!!';
+    }
+</script>
+
+</body>
+</html>

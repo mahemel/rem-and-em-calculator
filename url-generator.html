@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>rem Calc</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap" rel="stylesheet">
+
+    
+    <style>
+        * {
+            -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+            padding: 0;
+            margin: 0;
+        }
+        body {
+            font-family: "Roboto Mono", monospace;
+            font-optical-sizing: auto;
+            font-weight: 400;
+            font-style: normal;
+        }
+        main {
+            max-width: 540px;
+            margin: 0 auto;
+        }
+        h2 {
+            font-size: 1.25rem;
+        }
+        .flex {
+            display: flex;
+        }
+        .flex-wrap {
+            flex-wrap: wrap;
+        }
+        .grids {
+            width: 100%;
+            display: grid;
+            grid-template-columns: 1fr;
+        }
+        .responsive-inputs {
+            padding: 2rem 0 0;
+        }
+        .responsive-inputs .form-control {
+            width: 100%;
+            height: 3rem;
+            font-size: 1rem;
+            margin-bottom: 1rem;
+            padding: 0 .5em;
+            color: #000;
+            border: 1px solid;
+            font-family: inherit;
+        }
+        .copyme {
+            cursor: copy;
+        }
+        .form-control::-moz-placeholder {
+            color: #666;
+            opacity: 1;
+        }
+        .form-control::-ms-placeholder {
+            color: #666;
+            opacity: 1;
+        }
+        .form-control::-webkit-input-placeholder {
+            color: #666;
+            opacity: 1;
+        }
+        h2 {
+            margin-bottom: 1rem;
+        }
+
+    </style>
+
+</head>
+<body>
+    
+    <main>
+        <div class="grids responsive-inputs">
+            <h2 class="text-center">URL Generator</h2>
+            <input type="text" class="form-control col-100" id="text">
+            <input type="text" class="form-control col-100" id="result">
+            <div id="msg"></div>
+        </div>
+        
+    </main>
+    
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const textInput = document.getElementById('text');
+        const resultInput = document.getElementById('result');
+
+        textInput.addEventListener('keyup', function () {
+            const str = textInput.value;
+            resultInput.value = str.split(' ').join('-').toLowerCase();
+        });
+
+        resultInput.addEventListener('click', function () {
+            copyTexts();
+        });
+    });
+
+    function copyTexts() {
+        var copyText = document.getElementById("result");
+        copyText.select();
+        copyText.setSelectionRange(0, 99999)
+        document.execCommand("copy");
+        document.getElementById('msg').innerHTML = 'Copied!!';
+        
+    }
+</script> 
+
+</body>
+</html>
